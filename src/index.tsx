@@ -1,19 +1,25 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "./App";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import { ThemeProvider } from "./ThemeProvider";
+import { Stack } from "@mantine/core";
+import { RouterProvider } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+    document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+    <StrictMode>
+        <Provider store={store}>
+            <ThemeProvider>
+                <Stack align="center" mt={50}>
+                    <RouterProvider router={BrowserRouter} />
+                </Stack>
+            </ThemeProvider>
+        </Provider>
+    </StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
